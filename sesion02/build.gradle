@@ -21,19 +21,21 @@ targetCompatibility = '8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
-
 dependencies {
-    // Phiên bản chuẩn cho Java EE 8 / Tomcat 9
-    compileOnly 'javax.security.enterprise:javax.security.enterprise-api:1.0'
-
-    implementation("org.springframework:spring-webmvc:5.3.39")
+    // Servlet API (Tomcat cung cấp)
     compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
 
-    // Đừng quên JSTL nếu bạn dùng thẻ cắm trong JSP
+    // Spring MVC
+    implementation 'org.springframework:spring-webmvc:5.3.39'
+
+    // MySQL
+    implementation 'com.mysql:mysql-connector-j:9.5.0'
+
+    // JSTL
     implementation 'javax.servlet:jstl:1.2'
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
 
 test {

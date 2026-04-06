@@ -16,7 +16,6 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // Map URL "/" tới view "index"
         registry.addViewController("/").setViewName("index");
     }
 
