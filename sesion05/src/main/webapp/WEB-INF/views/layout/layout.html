@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout Demo</title>
+</head>
+<body>
+<header th:fragment="header" class="bg-primary text-white p-3">
+    <div class="container">
+        <h1 class="h3">Shop Demo</h1>
+        <nav>
+            <a href="/home" class="text-white me-3">Trang chủ</a>
+            <a href="/about" class="text-white">Giới thiệu</a>
+        </nav>
+    </div>
+</header>
+
+<footer th:fragment="footer" class="bg-dark text-white text-center p-3 mt-4">
+    <div class="container">
+        <p class="mb-0">© 2026 - Demo Shop. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
