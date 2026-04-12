@@ -41,16 +41,21 @@ public class HomeController {
         products = products.stream().filter(p->p.getId()!=id).toList();
         return  "redirect:/";
     }
-    @GetMapping("/edit/{id}")
-    public String handleEdit(@PathVariable int id, Model model){
+    @GetMapping("/bai3/edit/{id}")
+    public String handleEdit(@PathVariable("id") int id, Model model){
         Dish dish = list.stream()
                 .filter(d -> d.getId() == id)
                 .findFirst()
                 .orElse(null);
+        if (dish == null) {
+            model.addAttribute("error", "Không tìm thấy món ăn yêu cầu!");
+            model.addAttribute("dishes", list);
+            return "dish-list";
+        }
         model.addAttribute("dish", dish);
         return "edit-dish";
     }
-    @RequestMapping("/dish-list")
+    @RequestMapping("/bai3/dish-list")
     public String dishList(Model model){
         model.addAttribute("dishes", list);
         return "dish-list";
