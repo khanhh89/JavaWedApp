@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Gadget</title>
+</head>
+<body>
+
+<h2 th:text="${gadget.id != null ? 'Cập nhật' : 'Thêm mới'}"></h2>
+
+<form th:action="@{${gadget.id != null ? '/gadgets/edit' : '/gadgets/add'}}"
+      th:object="${gadget}"
+      method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <div>
+        Tên:
+        <input type="text" th:field="*{productName}">
+        <p style="color:red" th:errors="*{productName}"></p>
+    </div>
+
+    <div>
+        Hãng:
+        <input type="text" th:field="*{brand}">
+        <p style="color:red" th:errors="*{brand}"></p>
+    </div>
+
+    <div>
+        Số lượng:
+        <input type="number" th:field="*{stockQuantity}">
+        <p style="color:red" th:errors="*{stockQuantity}"></p>
+    </div>
+
+    <button type="submit">Lưu</button>
+</form>
+
+<a th:href="@{/gadgets}">Quay lại</a>
+
+</body>
+</html>

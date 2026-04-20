@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm cầu thủ</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body class="container mt-4">
+
+<h2 class="mb-4">Thêm cầu thủ</h2>
+
+<form th:action="@{/players/save}"
+      method="post"
+      enctype="multipart/form-data"
+      th:object="${player}">
+
+    <!-- NAME -->
+    <div class="form-group">
+        <label>Tên cầu thủ</label>
+        <input type="text" class="form-control" th:field="*{name}">
+        <small class="text-danger" th:errors="*{name}"></small>
+    </div>
+
+    <!-- POSITION -->
+    <div class="form-group">
+        <label>Vị trí</label>
+        <input type="text" class="form-control" th:field="*{position}">
+        <small class="text-danger" th:errors="*{position}"></small>
+    </div>
+
+    <!-- JERSEY NUMBER -->
+    <div class="form-group">
+        <label>Số áo</label>
+        <input type="number" class="form-control" th:field="*{jerseyNumber}">
+        <small class="text-danger" th:errors="*{jerseyNumber}"></small>
+    </div>
+
+    <!-- AVATAR -->
+    <div class="form-group">
+        <label>Ảnh đại diện</label>
+        <input type="file" name="file" class="form-control-file">
+    </div>
+
+    <!-- BUTTON -->
+    <button type="submit" class="btn btn-success">Lưu</button>
+    <a th:href="@{/players}" class="btn btn-secondary">Quay lại</a>
+
+</form>
+
+</body>
+</html>

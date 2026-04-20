@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="@{/handle-submit}" th:object="${personDTO}" method="post">
+    <div>
+        <label for="">ID</label><br>
+        <input type="number" th:field="*{id}">
+    </div>
+    <div>
+        <label for="">Name</label><br>
+        <input type="text" th:field="*{name}">
+    </div>
+    <div>
+        <label for="">Gender</label><br>
+        <select name="gender" id="" th:field="*{gender}">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    <div>
+        <label for="">DOB</label><br>
+        <input type="date" th:field="*{dob}">
+    </div>
+    <div>
+        <label for="">Age</label><br>
+        <input type="number" th:field="*{age}">
+    </div>
+    <div>
+        <label for="">Email</label><br>
+        <input type="email" th:field="*{email}">
+    </div>
+</form>
+</body>
+</html>

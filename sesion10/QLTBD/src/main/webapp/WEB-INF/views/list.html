@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Gadget</title>
+</head>
+<body>
+
+<h2>Danh sách thiết bị</h2>
+
+<form method="get" th:action="@{/gadgets}">
+    <input type="text" name="keyword" th:value="${keyword}" placeholder="Tìm kiếm...">
+    <button type="submit">Tìm</button>
+</form>
+
+<br>
+
+<a th:href="@{/gadgets/add}">➕ Thêm mới</a>
+
+<p th:if="${#lists.isEmpty(list)}">Kho hàng hiện đang trống</p>
+
+<table border="1" th:if="${!#lists.isEmpty(list)}">
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Hãng</th>
+        <th>Số lượng</th>
+        <th>Ảnh</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="g : ${list}">
+        <td th:text="${g.id}"></td>
+        <td th:text="${g.productName}"></td>
+        <td th:text="${g.brand}"></td>
+        <td th:text="${g.stockQuantity}"></td>
+        <td th:text="${g.productImage}"></td>
+        <td>
+            <a th:href="@{/gadgets/edit/{id}(id=${g.id})}">Edit</a> |
+            <a th:href="@{/gadgets/delete/{id}(id=${g.id})}"
+               onclick="return confirm('Bạn có chắc muốn xóa?')">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

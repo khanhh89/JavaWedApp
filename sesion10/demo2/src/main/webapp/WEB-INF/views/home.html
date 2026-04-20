@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách cầu thủ</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body class="container mt-4">
+
+<h2 class="mb-4">Danh sách cầu thủ</h2>
+
+<a th:href="@{/players/create}" class="btn btn-primary mb-3">
+    + Thêm cầu thủ
+</a>
+
+<!-- EMPTY -->
+<div th:if="${#lists.isEmpty(list)}" class="alert alert-warning">
+    Chưa có dữ liệu
+</div>
+
+<!-- TABLE -->
+<table class="table table-bordered text-center"
+       th:if="${!#lists.isEmpty(list)}">
+
+    <thead class="thead-dark">
+    <tr>
+        <th>Ảnh</th>
+        <th>Tên</th>
+        <th>Vị trí</th>
+        <th>Số áo</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="player : ${list}">
+        <td>
+            <img th:src="${player.avatar != null ? '/uploads/' + player.avatar : '/default.png'}"
+                 th:alt="${player.name}"
+                 width="70" height="70"
+                 style="object-fit:cover"
+                 class="rounded">
+        </td>
+
+        <td th:text="${player.name}"></td>
+        <td th:text="${player.position}"></td>
+        <td th:text="${player.jerseyNumber}"></td>
+
+        <td>
+            <a th:href="@{'/players/edit/' + ${player.id}}"
+               class="btn btn-warning btn-sm">
+                Sửa
+            </a>
+
+            <a th:href="@{'/players/delete/' + ${player.id}}"
+               class="btn btn-danger btn-sm"
+               onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                Xóa
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
